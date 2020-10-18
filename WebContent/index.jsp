@@ -18,10 +18,10 @@
 	
 	<br><br><br><br><br><br>
 	<a href="login.jsp">
-		<input type="submit" class="loginBtn" value="LogIn">
+		<input type="submit" class="loginBtn" value=" LogIn">
 	</a>
 	<a href="signup.jsp">
-		<input type="submit" class="loginBtn" value="SignUp">
+		<input type="submit" class="loginBtn" value=" SignUp">
 	</a>	
 </body>
 </html>

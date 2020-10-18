@@ -31,7 +31,7 @@
 	<form action="LoginServlet" method="post">
 		Enter username : <input type="text" name="uname"><br><br>
 		Enter password : <input type="password" name="pass"><br><br>
-		<input type="submit" class="loginBtn" value="Login">
+		<input type="submit" class="loginBtn" value=" Login">
 	</form>		 
 	
 	
