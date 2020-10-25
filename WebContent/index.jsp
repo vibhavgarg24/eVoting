@@ -18,7 +18,7 @@
 	
 	<br><br><br><br><br><br>
 	<a href="login.jsp">
-		<input type="submit" class="loginBtn" value=" L o g I n ">
+		<input type="submit" class="loginBtn" value="LogIn">
 	</a>
 	<a href="signup.jsp">
 		<input type="submit" class="loginBtn" value=" SignUp">
