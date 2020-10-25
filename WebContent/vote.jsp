@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"  import="java.time.LocalTime"%>
+        
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,16 +18,27 @@
 
 	<%!
 	String electionCode = "";
+	String uname = "";
 	%>
 	
 	<%
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	
+		uname = session.getAttribute("uname").toString();
+		
 		if (session.getAttribute("uname") == null) {
 			response.sendRedirect("login.jsp");
 		}
 		
 		electionCode = request.getParameter("electionCode"); 
+		
+		
+		// String time = (LocalTime.now()).toString();		
+		// LocalTime lt = LocalTime.of(23, 0);
+		// String tt = lt.toString();
+		// boolean bef = lt.isAfter(LocalTime.parse(time));
+		
+		
 	%>
 	
 	<br><br><br><br><br>
