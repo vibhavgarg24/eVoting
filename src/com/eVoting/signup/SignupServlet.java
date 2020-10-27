@@ -19,26 +19,19 @@ public class SignupServlet extends HttpServlet {
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String dob = request.getParameter("dob");
-		String city = request.getParameter("City");
+		String city = request.getParameter("city");
 		String country = request.getParameter("country");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String e_otp = request.getParameter("e_otp");
 		String m_otp = request.getParameter("m_otp");
 		
+		
 		PrintWriter out = response.getWriter();
-		
-		/*Check username is unique*/
-		
-		/*Check pass and conpass are same*/
-		if (!pass.equals(conpass))
-		{
-			out.println("The passwords do not match");
-		}
 		
 		out.println("Uname : "+uname);
 		out.println("Password : "+pass);
-		out.println("Name : "+fname+lname);
+		out.println("Name : "+fname+" "+lname);
 		out.println("DOB : "+dob);
 		out.println("City : "+city);
 		out.println("Country : "+country);
@@ -50,6 +43,7 @@ public class SignupServlet extends HttpServlet {
 		/*Check authentication details - OTP*/
 		
 		/*Signed up successfully - Store the data in the database*/
+		
 	}
 
 }
