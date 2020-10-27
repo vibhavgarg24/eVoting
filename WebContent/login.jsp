@@ -29,15 +29,9 @@
 	<h3> <%= msg%> </h3>
 	
 	<form action="LoginServlet" method="post">
-<<<<<<< HEAD
-		Enter username : <input type="text" name="uname"><br><br>
-		Enter password : <input type="password" name="pass"><br><br>
-		<input type="submit" class="loginBtn" value=" Login">
-=======
 		Enter username : <input type="text" name="uname" required="required"><br><br>
 		Enter password : <input type="password" name="pass" required="required"><br><br>
 		<input type="submit" class="loginBtn" value="Login">
->>>>>>> a56d25d5245af81b8dfe15c82f1d51eabde1bd11
 	</form>		 
 	
 	
