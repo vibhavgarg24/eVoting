@@ -1,7 +1,6 @@
 package com.eVoting.login;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,23 +21,40 @@ public class LoginServlet extends HttpServlet {
 		
 		Login login = new Login(); 
 		boolean loginCheck = false;
+		boolean status=false;
 		
 		try {
 			
 			if (uname == null || pass == null || uname.equals("") || pass.equals("")) {
 				nextPage = "login.jsp?msg=Username or Password cannot be Empty";
-			} else {
-			
-				loginCheck = login.checkCreds(uname, pass);
+			} else {	
+				loginCheck = login.checkCreds_userid(uname, pass);
 				
 				if ( loginCheck ) {
-					HttpSession session = request.getSession();
-					session.setAttribute("uname", uname);
 					
-					nextPage = "homepage.jsp";
+					status = login.checkAuthStatus(uname);
+					if (status){
+						HttpSession session = request.getSession();
+						session.setAttribute("uname", uname);	
+						nextPage = "homepage.jsp";
+					}
+					else {
+						nextPage="login.jsp";
+					}
 					
 				} else {
-					nextPage = "login.jsp?msg=Invalid Credentials";
+					
+					loginCheck = login.checkCreds_email(uname, pass);
+					if ( loginCheck ) {
+						HttpSession session = request.getSession();
+						session.setAttribute("uname", uname);
+						
+						nextPage = "homepage.jsp";
+						
+					}
+					else {
+						nextPage = "login.jsp?msg=Invalid Credentials";
+					}
 				}
 			}
 			

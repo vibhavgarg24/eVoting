@@ -60,3 +60,264 @@ a{
     width: 35%;
     z-index: -50;
 }
+     
+.cards {
+  box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+  background-color: white;
+  color: black;
+  transition: 0.3s;
+  width: 20%;
+  padding: 2px 10px;
+  margin: 15px;
+  
+}
+
+.cards:hover {
+  box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+  padding: 2px 16px;
+  background-color: rgb(108, 99, 200);
+  color: white;
+}    
+  
+  
+.grid{
+  display: grid;
+  margin-left: 15px;
+  max-width: 50%;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  grid-row-gap: 2px;
+  grid-auto-rows: 230px;
+  grid-auto-flow: row dense;
+}
+    
+.card{
+	flex-direction: column;
+	max-width: 200px;
+  	justify-content: flex-end;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    color: slate;
+    flex-basis: calc(33% - 40px);
+    margin: 15px;
+    overflow: hidden;
+    padding: 15px;
+    position: relative;
+    transition: .5s ease all;
+    }
+    
+.card:before{
+        background: white;
+        border-radius: 40px;
+        height: 5px;
+        content: '';
+        left: 20px;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        transition: 0.4s ease all;
+}
+        
+    
+b,p{
+	
+    position: relative;
+    z-index: 2;
+}
+
+b{
+	
+    box-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+}
+   
+        
+.card.purple:before{
+    background-image: linear-gradient(45deg, #6a6da1, #3f3d56);
+    }
+        
+.card:hover{
+    border: 0;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.3);
+    color: white;
+    transform: scale(1.25);
+    z-index: 2;
+    
+}
+    
+.card:hover:before{
+        border-radius: 20px;
+        left: 0;
+        height: 100%;
+        right: 0;
+        top: 0;
+}
+
+.containerBtn { 
+    display: flex;
+    padding: 1em;
+    text-align: center; 
+}
+
+
+p { 
+ a {
+    font-size: 12px;
+    background: rgba(#fff, 0);
+    border-bottom: 1px solid;
+    color: white;
+    line-height: 1.4;
+    padding: .25em;
+    text-decoration: none;
+    
+    &:hover {
+      background: rgba(#fff, 1);
+      color: inherit;
+    }
+  }
+}
+
+.btn {
+  color: red;
+  cursor: pointer;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 0 2em;
+  max-width: 80px; 
+  
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%; 
+  &:hover { text-decoration: none; }
+}
+
+.aBtn {
+  background-color: inherit;
+  font-weight: 100;
+  
+  svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0; 
+    width: 100%; 
+  }
+  
+  rect {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear;
+  }
+}
+
+.aBtn:hover {
+  font-weight: 900;
+  letter-spacing: 1px;
+  
+  rect {
+    stroke-width: 5;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+
+.containerRadio{
+  display: block;
+  position: relative;
+  height: auto;
+  width: 400px;
+  
+}
+
+.container ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+	overflow: auto;
+}
+
+ul li{
+  color: #AAAAAA;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 80px;
+	border-bottom: 1px solid #333;
+}
+
+ul li input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+  required: required;
+}
+
+ul li label{
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 1.35em;
+  padding: 25px 25px 25px 80px;
+  margin: 0px;
+  height: 20px;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+
+ul li:hover label{
+	color: #6a6da1;
+}
+
+ul li .check{
+  display: block;
+  position: absolute;
+  border: 5px solid #AAAAAA;
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  top: 22px;
+  left: 20px;
+	z-index: 5;
+	transition: border .25s linear;
+	-webkit-transition: border .25s linear;
+}
+
+ul li:hover .check {
+  border: 5px solid #6a6da1;
+}
+
+ul li .check::before {
+  display: block;
+  position: absolute;
+	content: '';
+  border-radius: 100%;
+  height: 15px;
+  width: 15px;
+  top: 5px;
+	left: 5px;
+  margin: auto;
+	transition: background 0.25s linear;
+	-webkit-transition: background 0.25s linear;
+}
+
+input[type=radio]:checked ~ .check {
+  border: 5px solid #0F9D58;
+}
+
+input[type=radio]:checked ~ .check::before{
+  background: #0F9D58;
+}
+
+input[type=radio]:checked ~ label{
+  color: #0F9D58;
+}
+

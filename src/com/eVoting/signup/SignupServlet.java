@@ -1,6 +1,9 @@
 package com.eVoting.signup;
 
 import java.io.IOException;
+
+
+
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -14,36 +17,28 @@ public class SignupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String uname = request.getParameter("uname");
-		String pass = request.getParameter("pass");
-		String conpass = request.getParameter("conpass");
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
-		String dob = request.getParameter("dob");
-		String city = request.getParameter("city");
-		String country = request.getParameter("country");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
 		String e_otp = request.getParameter("e_otp");
-		String m_otp = request.getParameter("m_otp");
 		
+		User user = new User();
+		user.setUserid(uname);
 		
-		PrintWriter out = response.getWriter();
-		
-		out.println("Uname : "+uname);
-		out.println("Password : "+pass);
-		out.println("Name : "+fname+" "+lname);
-		out.println("DOB : "+dob);
-		out.println("City : "+city);
-		out.println("Country : "+country);
-		out.println("Email : "+email);
-		out.println("Mobile No : "+phone);
-		out.println("Email OTP : "+e_otp);
-		out.println("Mobile OTP : "+m_otp);
+		String mailcode = user.getOtp();
 		
 		/*Check authentication details - OTP*/
-		
-		/*Signed up successfully - Store the data in the database*/
-		
+		if (!mailcode.equals(e_otp))
+		{
+			response.sendRedirect("login.jsp?msg=Incorrect OTP value entered. Login and authenticate again");
+		}
+		else
+		{
+			/*Signed up successfully - Store the data in the database*/
+			//User user = new User();
+			user.setEmail(email);
+			user.addUserEmail();
+
+			response.sendRedirect("successfulsignup.jsp");
+		}
 	}
 
 }

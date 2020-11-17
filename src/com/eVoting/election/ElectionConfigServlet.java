@@ -1,6 +1,8 @@
 package com.eVoting.election;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,35 +22,50 @@ public class ElectionConfigServlet extends HttpServlet {
 		String desc = request.getParameter("desc").toString();
 		int noOfCandidates = Integer.parseInt( request.getParameter("noOfCandidates").toString() );
 		
+		String start_date = request.getParameter("start_date");
+		String end_date = request.getParameter("end_date");
 		
 		long unix = System.currentTimeMillis() / 10L;
 		FNV1a32 fn = new FNV1a32();
 		fn.init(uname + unix);
 		String code = Long.toHexString(fn.getHash());
-		
-		
+				
 		Election election = new Election();
 		election.setTitle(title);
 		election.setDesc(desc);
+		election.setUnameConducted(uname);
 		election.setNoOfCandidates(noOfCandidates);
-		election.setCode(code);
+		election.setStart_date(start_date);
+		election.setEnd_date(end_date);
 		
-		for (int i=1; i<=noOfCandidates; i++) {
-//			String candidateNo = "candidateName" + i;
-			String candidate = request.getParameter("candidateName" + i);
-			election.addCandidate(candidate);
+		String dbcode = election.getdbcode(uname);
+		
+		if (!dbcode.equals("none")) {
+			code = dbcode;
+			election.setCode(code);
+		}
+		else {
+			election.setCode(code);
+			
+			for (int i=1; i<=noOfCandidates; i++) {
+				String candidate = request.getParameter("candidateName" + i);
+				election.addCandidate(candidate);	
+			}
+			
+			try {
+				election.save();
+			} catch (Exception e) {
+				System.out.println(e);
+				election.code = "error";
+			}
 			
 		}
-		
-//		String can = request.getParameter("candidateName1"); 
-		
-//		request.setAttribute("can", can);
-		
+			
 		request.setAttribute("election", election);
 		
 		request.getRequestDispatcher("electionCode.jsp").forward(request, response);
-		
-//		response.sendRedirect("electionCandidates.jsp?election="+election);
+			
+		//response.sendRedirect("electionCandidates.jsp?election="+election);
 	}
 
 }

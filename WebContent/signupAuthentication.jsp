@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.io.File" import="java.util.Scanner" import="java.io.FileNotFoundException" 
 import="java.io.*"
+import="com.eVoting.signup.*"
 contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -20,6 +21,20 @@ contentType="text/html; charset=ISO-8859-1"
 
 
  <h2>Authentication Details </h2>
+ 
+ 	<%!
+		String msg = "";
+	%>
+	<%
+		msg = request.getParameter("msg");
+		if (msg == null) {
+			msg = "";
+		}
+	%>
+	
+	<h3> <%= msg%> </h3>
+	<br>
+	
 	<%
 	
 	String uname = request.getParameter("uname");
@@ -27,27 +42,26 @@ contentType="text/html; charset=ISO-8859-1"
 	String fname = request.getParameter("fname");
 	String lname = request.getParameter("lname");
 	String dob = request.getParameter("dob");
-	String city = request.getParameter("City");
+	String city = request.getParameter("city");
 	String country = request.getParameter("country");
+	String phone = request.getParameter("phone");
+	String email="Null";
+	int auth_status=0;
+	
+	%>
+	
+	<%
+	
+	User voter = new User(uname,pass,fname,lname,email,phone,dob,city,country,auth_status);
+	voter.adduser();
 	
 	%>
 
-<form action="SignupServlet" method="post">
+<form action="signupauth2.jsp" method="post">
 <br>
-	 	 Enter Email No : <input type="email" name="email" required="required"><br><br>
-	 	 Enter OTP (Email) : <input type="number" name="e_otp" size="6" required="required" min="100000" max="999999"><br><br>
-		 Enter Mobile No : <input type="tel" name="phone" pattern="[0-9]{10}" required="required"><br><br>
-		 Enter OTP (Mobile) : <input type="number" name="m_otp" size="6" required="required" min="100000" max="999999"><br><br>
-	<br><br>
-	
+	Enter Email Id : <input type="email" name="email" required="required" size="50"><br><br>
 	<input type="hidden" name="uname" value="<%=uname %>">
-	<input type="hidden" name="pass" value="<%=pass %>">
-	<input type="hidden" name="fname" value="<%=fname %>">
-	<input type="hidden" name="lname" value="<%=lname %>">
-	<input type="hidden" name="dob" value="<%=dob %>">
-	<input type="hidden" name="city" value="<%=city %>">
-	<input type="hidden" name="country" value="<%=country %>">
-	
+	<br><br>
 	 <input type="submit" class="loginBtn" value="Submit Details">
 </form>
 	

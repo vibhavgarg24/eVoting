@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.io.File" import="java.util.Scanner" import="java.io.FileNotFoundException" 
 import="java.io.*"
+import="java.time.Instant"
+import="com.eVoting.signup.*"
 contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -27,26 +29,39 @@ contentType="text/html; charset=ISO-8859-1"
 	%>
 	
 	<%
+	
 	/*Check username is unique*/
+	User user = new User();
+	user.setUserid(uname);
+	if (user.alreadyExists())
+	{
+		response.sendRedirect("signup.jsp?msg=Username already exists. Create a unique username");
+	}
 	
 	
 	/*Check pass and conpass are same*/
-	if (!pass.equals(conpass))
+	else if (!pass.equals(conpass))
 	{
 		response.sendRedirect("signup.jsp?msg=Password does not match");
 	}
 	
 	%>
 	
+	<%
+		Instant now = Instant.now();
+		String date = now.toString();
+		date = date.substring(0,10);
+	%>
+	
 <form action="signupAuthentication.jsp" method="post">
 <br>
 	 Enter First Name : <input type="text" name="fname" required="required"><br><br>
 	 Enter Last Name : <input type="text" name="lname" required="required"><br><br>
-	 Enter Date of Birth : <input type="date" name="dob" required="required"><br><br>
+	 Enter Date of Birth : <input type="date" name="dob" required="required" max="<%=date%>"><br><br>
 	 Enter Country : <input type="text" name="country" value="India" readonly><br><br>
 	
 	 Enter City : 
-	 <select name="City">
+	 <select name="city">
 	  <option value="none" selected disabled hidden> 
           Select Your City </option>
 	 	<% 
@@ -68,10 +83,11 @@ contentType="text/html; charset=ISO-8859-1"
 	 		System.out.println("An error occured"); 
 	 	}
 	 	%> 
+	 
 	 	
 	 </select>
 	 <br><br>
-	 </fieldset>
+	 Enter Mobile No : <input type="tel" name="phone" pattern="[0-9]{10}" required="required"><br><br>
 	 <br><br>
 	 	<input type="hidden" name="uname" value="<%=uname %>">
 	 	<input type="hidden" name="pass" value="<%=pass %>">
